@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include("../partials/header") %>
-  </head>
-  <body class="bg-gray-100 text-gray-800">
-    <div class="container mx-auto p-5">
-      <h1 class="text-3xl font-bold text-center mb-5 capitalize">
+
+<head>
+  <%- include("../partials/header") %>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-5 flex justify-center">
+    <div class="bg-red-400 border-4 border-red-200 rounded-lg shadow-xl p-5 w-80 text-center">
+      <h1 class="text-white text-3xl font-bold mb-3 capitalize text-red-700">
         <%= pokemon.name %>
       </h1>
-      <div class="flex flex-col items-center">
-        <img
-          src="<%= pokemon.sprites.front_default %>"
-          alt="<%= pokemon.name %>"
-          class="w-40 h-40"
-        />
-        <p class="text-lg font-semibold">Height: <%= pokemon.height %></p>
-        <p class="text-lg font-semibold">Weight: <%= pokemon.weight %></p>
-        <p class="text-lg font-semibold">
-          Type: <%= pokemon.types.map(t => t.type.name).join(', ') %>
+      <div class="bg-white border-2 border-red-300 rounded-lg p-3 flex flex-col items-center">
+        <img src="<%= pokemon.sprites.front_default %>" alt="<%= pokemon.name %>"
+          class="w-40 h-40 mb-3 border-2 border-red-400 rounded-lg" />
+          <div class="flex flex-wrap justify-center mt-2">
+            <div class="flex space-x-2">
+              <% pokemon.types.forEach(t=> { %>
+                <span class="px-3 py-1 bg-red-300 text-white rounded-full text-sm font-semibold">
+                  <%= t.type.name %>
+                </span>
+                <% }) %>
+            </div> 
+          </div>
+        <p class="text-lg font-semibold text-gray-800">Experience: <%= pokemon.base_experience %>
+        </p>
+        <p class="text-lg font-semibold text-gray-800">Attack: <%= pokemon.stats[1].base_stat %>
+        </p>
+        <p class="text-lg font-semibold text-gray-800">Speed: <%= pokemon.stats[5].base_stat %>
+        </p>
+        <p class="text-lg font-semibold text-gray-800">Defense: <%= pokemon.stats[2].base_stat %>
+        </p>
+        <p class="text-lg font-semibold text-gray-800">Height: <%= pokemon.height %>
+        </p>
+        <p class="text-lg font-semibold text-gray-800">Weight: <%= pokemon.weight %>
         </p>
       </div>
-      <div class="text-center mt-5">
-        <a href="/" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Back</a>
+      <div class="mt-5">
+        <a href="/" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Back</a>
       </div>
     </div>
-    <%- include("../partials/footer") %>
-  </body>
+  </div>
+  <%- include("../partials/footer") %>
+</body>
+
 </html>
